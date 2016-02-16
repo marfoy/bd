@@ -14,7 +14,7 @@
 <tbody>
 {% for e in lst %}
 <tr class="hover">
-	<td><a href="{% url 'authors' e.id %}">{{e.name}}</a></td>
+	<td>{{ e.link }}</td>
 	<td>{{ e.birthday }}</td>
 	<td>{{ e.nation }}</td>
 </tr>

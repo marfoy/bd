@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Author, Publication, Editor
+from .models import Author, Publication, Editor, Saga
 
 #FIXME remove class=hover
 
@@ -14,6 +14,10 @@ def pubs(request):
 def author(request, au_id):
     context = {'a': get_object_or_404(Author, pk=au_id)}
     return render(request, 'bd/author.html', context)
+
+def saga(request, sa_id):
+    context = {'s': get_object_or_404(Saga, pk=sa_id)}
+    return render(request, 'bd/saga.html', context)
 
 def editor(request, ed_id):
     context = {'e': get_object_or_404(Editor, pk=ed_id)}

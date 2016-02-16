@@ -28,11 +28,11 @@
 <tbody>
 {% for p in a.sorted_publications %}
 <tr class="hover {%ifchanged p.saga%}{%cycle 'success' '' as rowcolors%}{%else%}{{rowcolors}}{%endifchanged%}">
-	<td><a href="{% url 'pub' p.id %}">{{p.title}}</a></td>
+	<td>{{ p.link }}</td>
 	<td>{{ p.pub_date }}</td>
-	<td>{{ p.saga }}</td>
+	<td>{{ p.saga.link }}</td>
 	<td>{{ p.volume }}</td>
-	<td><a href="{% url 'editor' p.editor_id %}">{{p.editor}}</a></td>
+	<td>{{ p.editor.link }}</td>
 	<td>{{ p.genre }}</td>
 </tr>
 {% endfor %}
