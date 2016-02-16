@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block bodytitle %}{{s.name}}{% endblock %}
+{% block title %}{{s.name}}{% endblock %}
+{% block body %}
+<h2>Publications</h2>
+<table class="table table-hover">
+<thead>
+<tr>
+	<th>Titre</th>
+	<th>Publiée le</th>
+	<th>Auteur</th>
+	<th>Volume</th>
+	<th>Éditeur</th>
+	<th>Genre</th>
+</tr>
+</thead>
+<tbody>
+{% for p in s.sorted_publications %}
+<tr>
+	<td><a href="{% url 'pub' p.id %}">{{p.title}}</a></td>
+	<td><a href="{% url 'author' p.author_id %}">{{p.author}}</a></td>
+	<td>{{ p.pub_date }}</td>
+	<td>{{ p.volume }}</td>
+	<td><a href="{% url 'editor' p.editor_id %}">{{p.editor}}</a></td>
+	<td>{{ p.genre }}</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+{% endblock %}

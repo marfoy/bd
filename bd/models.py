@@ -9,6 +9,9 @@ class Editor(models.Model):
     def __str__(self):
         return self.name
 
+    def sorted_publications(self):
+        return self.publication_set.order_by('pub_date')
+
 
 @python_2_unicode_compatible
 class Author(models.Model):
@@ -18,6 +21,8 @@ class Author(models.Model):
 
     def __str__(self):
         return self.name
+    def sorted_publications(self):
+        return self.publication_set.order_by('saga', 'pub_date')
 
 
 @python_2_unicode_compatible
@@ -27,6 +32,8 @@ class Publication(models.Model):
     pub_date = models.DateField('date published')
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
     volume = models.IntegerField(default=1)
+    #first_of_saga is a bad idea since you may buy issues
+    #in an unordered manner: your first one wouldn't be the real one
     saga = models.CharField(max_length=200)
     editor = models.ForeignKey(Editor, on_delete=models.CASCADE)
     pages = models.IntegerField()

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block bodytitle %}Auteurs{% endblock %}
+{% block title %}Auteurs{% endblock %}
+{% block body %}
+{% if lst %}
+<table class="table table-hover">
+<thead>
+<tr>
+	<th>Nom</th>
+	<th>Né le</th>
+	<th>Pays</th>
+</tr>
+</thead>
+<tbody>
+{% for e in lst %}
+<tr class="hover">
+	<td><a href="{% url 'authors' e.id %}">{{e.name}}</a></td>
+	<td>{{ e.birthday }}</td>
+	<td>{{ e.nation }}</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+{% else %}
+<div class="alert alert-info" role="alert">Pas d'auteurs.</div>
+{% endif %}
+{% endblock %}

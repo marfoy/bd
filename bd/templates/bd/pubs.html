@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block bodytitle %}Publications{% endblock %}
+{% block title %}Publications{% endblock %}
+{% block body %}
+{% if lst %}
+<table class="table table-hover">
+<thead>
+<tr>
+	<th>Titre</th>
+	<th>Publiée le</th>
+	<th>Saga</th>
+	<th>Volume</th>
+	<th>Éditeur</th>
+	<th>Genre</th>
+</tr>
+</thead>
+<tbody>
+{% for p in lst %}
+<tr class="hover {%ifchanged p.saga%}{%cycle 'success' '' as rowcolors%}{%else%}{{rowcolors}}{%endifchanged%}">
+	<td><a href="{% url 'pub' p.id %}">{{p.title}}</a></td>
+	<td>{{ p.pub_date }}</td>
+	<td>{{ p.saga }}</td>
+	<td>{{ p.volume }}</td>
+	<td><a href="{% url 'editor' p.editor_id %}">{{p.editor}}</a></td>
+	<td>{{ p.genre }}</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+{% else %}
+<div class="alert alert-info" role="alert">Aucune publication.</div>
+{% endif %}
+{% endblock %}
